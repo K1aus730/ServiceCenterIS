@@ -1,0 +1,803 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище ip125Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id client" />
+          </Key>
+          <Property Name="Id client" Type="int" Nullable="false" />
+          <Property Name="Second name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone number" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="Mail" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Date of birthday" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Complex service">
+          <Key>
+            <PropertyRef Name="Id complex" />
+          </Key>
+          <Property Name="Id complex" Type="int" Nullable="false" />
+          <Property Name="Id service" Type="int" Nullable="false" />
+          <Property Name="Id type device" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Device">
+          <Key>
+            <PropertyRef Name="Id device" />
+          </Key>
+          <Property Name="Id device" Type="int" Nullable="false" />
+          <Property Name="Id type device" Type="int" Nullable="false" />
+          <Property Name="Name device" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Serial number" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Cause of failure" Type="nvarchar" MaxLength="500" />
+          <Property Name="Id client" Type="int" Nullable="false" />
+          <Property Name="Crash" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Date of crash" Type="date" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Id employee" />
+          </Key>
+          <Property Name="Id employee" Type="int" Nullable="false" />
+          <Property Name="Second name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Date of birthday" Type="date" Nullable="false" />
+          <Property Name="Mail" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone number" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="Id post" Type="int" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="Id post" />
+          </Key>
+          <Property Name="Id post" Type="int" Nullable="false" />
+          <Property Name="Name post" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Purchase structure">
+          <Key>
+            <PropertyRef Name="Id spares" />
+            <PropertyRef Name="Id record" />
+          </Key>
+          <Property Name="Id spares" Type="int" Nullable="false" />
+          <Property Name="Id record" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Registration for the provision of services">
+          <Key>
+            <PropertyRef Name="Id record" />
+          </Key>
+          <Property Name="Id record" Type="int" Nullable="false" />
+          <Property Name="Id sevice" Type="int" Nullable="false" />
+          <Property Name="Id device" Type="int" Nullable="false" />
+          <Property Name="Id employee" Type="int" Nullable="false" />
+          <Property Name="acceptance date device" Type="date" Nullable="false" />
+          <Property Name="Work plan" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Date start work" Type="date" Nullable="false" />
+          <Property Name="Date end work" Type="date" Nullable="false" />
+          <Property Name="Id закупки" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="Id service" />
+          </Key>
+          <Property Name="Id service" Type="int" Nullable="false" />
+          <Property Name="Name service" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cost service" Type="money" Nullable="false" />
+          <Property Name="Image service" Type="nvarchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Shares">
+          <Key>
+            <PropertyRef Name="Id shares" />
+          </Key>
+          <Property Name="Id shares" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Manufacturer" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Serial number" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Cost" Type="money" Nullable="false" />
+          <Property Name="Amount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Type device">
+          <Key>
+            <PropertyRef Name="Id type device" />
+          </Key>
+          <Property Name="Id type device" Type="int" Nullable="false" />
+          <Property Name="Name type device" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Complex service_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Complex service" Type="Self.Complex service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="Id service" />
+            </Principal>
+            <Dependent Role="Complex service">
+              <PropertyRef Name="Id service" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Complex service_Type device">
+          <End Role="Type device" Type="Self.Type device" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Complex service" Type="Self.Complex service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type device">
+              <PropertyRef Name="Id type device" />
+            </Principal>
+            <Dependent Role="Complex service">
+              <PropertyRef Name="Id type device" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Device_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Device" Type="Self.Device" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id client" />
+            </Principal>
+            <Dependent Role="Device">
+              <PropertyRef Name="Id client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Device_Type device">
+          <End Role="Type device" Type="Self.Type device" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Device" Type="Self.Device" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type device">
+              <PropertyRef Name="Id type device" />
+            </Principal>
+            <Dependent Role="Device">
+              <PropertyRef Name="Id type device" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Post">
+          <End Role="Post" Type="Self.Post" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="Id post" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="Id post" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Purchase structure_Registration for the provision of services">
+          <End Role="Registration for the provision of services" Type="Self.Registration for the provision of services" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Purchase structure" Type="Self.Purchase structure" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Registration for the provision of services">
+              <PropertyRef Name="Id record" />
+            </Principal>
+            <Dependent Role="Purchase structure">
+              <PropertyRef Name="Id record" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Purchase structure_Shares">
+          <End Role="Shares" Type="Self.Shares" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Purchase structure" Type="Self.Purchase structure" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shares">
+              <PropertyRef Name="Id shares" />
+            </Principal>
+            <Dependent Role="Purchase structure">
+              <PropertyRef Name="Id spares" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Registration for the provision of services_Device">
+          <End Role="Device" Type="Self.Device" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Registration for the provision of services" Type="Self.Registration for the provision of services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Device">
+              <PropertyRef Name="Id device" />
+            </Principal>
+            <Dependent Role="Registration for the provision of services">
+              <PropertyRef Name="Id device" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Registration for the provision of services_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Registration for the provision of services" Type="Self.Registration for the provision of services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id employee" />
+            </Principal>
+            <Dependent Role="Registration for the provision of services">
+              <PropertyRef Name="Id employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Registration for the provision of services_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Registration for the provision of services" Type="Self.Registration for the provision of services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="Id service" />
+            </Principal>
+            <Dependent Role="Registration for the provision of services">
+              <PropertyRef Name="Id sevice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ip125ModelContainer">
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Complex service" EntityType="Self.Complex service" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Device" EntityType="Self.Device" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Purchase structure" EntityType="Self.Purchase structure" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Registration for the provision of services" EntityType="Self.Registration for the provision of services" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shares" EntityType="Self.Shares" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Type device" EntityType="Self.Type device" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Complex service_Service" Association="Self.FK_Complex service_Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="Complex service" EntitySet="Complex service" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Complex service_Type device" Association="Self.FK_Complex service_Type device">
+            <End Role="Type device" EntitySet="Type device" />
+            <End Role="Complex service" EntitySet="Complex service" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Device_Client" Association="Self.FK_Device_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Device" EntitySet="Device" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Device_Type device" Association="Self.FK_Device_Type device">
+            <End Role="Type device" EntitySet="Type device" />
+            <End Role="Device" EntitySet="Device" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Post" Association="Self.FK_Employee_Post">
+            <End Role="Post" EntitySet="Post" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchase structure_Registration for the provision of services" Association="Self.FK_Purchase structure_Registration for the provision of services">
+            <End Role="Registration for the provision of services" EntitySet="Registration for the provision of services" />
+            <End Role="Purchase structure" EntitySet="Purchase structure" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchase structure_Shares" Association="Self.FK_Purchase structure_Shares">
+            <End Role="Shares" EntitySet="Shares" />
+            <End Role="Purchase structure" EntitySet="Purchase structure" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Registration for the provision of services_Device" Association="Self.FK_Registration for the provision of services_Device">
+            <End Role="Device" EntitySet="Device" />
+            <End Role="Registration for the provision of services" EntitySet="Registration for the provision of services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Registration for the provision of services_Employee" Association="Self.FK_Registration for the provision of services_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Registration for the provision of services" EntitySet="Registration for the provision of services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Registration for the provision of services_Service" Association="Self.FK_Registration for the provision of services_Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="Registration for the provision of services" EntitySet="Registration for the provision of services" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ip125Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id_client" />
+          </Key>
+          <Property Name="Id_client" Type="Int32" Nullable="false" />
+          <Property Name="Second_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone_number" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Date_of_birthday" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Device" Relationship="Self.FK_Device_Client" FromRole="Client" ToRole="Device" />
+        </EntityType>
+        <EntityType Name="Complex_service">
+          <Key>
+            <PropertyRef Name="Id_complex" />
+          </Key>
+          <Property Name="Id_complex" Type="Int32" Nullable="false" />
+          <Property Name="Id_service" Type="Int32" Nullable="false" />
+          <Property Name="Id_type_device" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Service" Relationship="Self.FK_Complex_service_Service" FromRole="Complex_service" ToRole="Service" />
+          <NavigationProperty Name="Type_device" Relationship="Self.FK_Complex_service_Type_device" FromRole="Complex_service" ToRole="Type_device" />
+        </EntityType>
+        <EntityType Name="Device">
+          <Key>
+            <PropertyRef Name="Id_device" />
+          </Key>
+          <Property Name="Id_device" Type="Int32" Nullable="false" />
+          <Property Name="Id_type_device" Type="Int32" Nullable="false" />
+          <Property Name="Name_device" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Serial_number" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cause_of_failure" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Id_client" Type="Int32" Nullable="false" />
+          <Property Name="Crash" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Date_of_crash" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Device_Client" FromRole="Device" ToRole="Client" />
+          <NavigationProperty Name="Type_device" Relationship="Self.FK_Device_Type_device" FromRole="Device" ToRole="Type_device" />
+          <NavigationProperty Name="Registration_for_the_provision_of_services" Relationship="Self.FK_Registration_for_the_provision_of_services_Device" FromRole="Device" ToRole="Registration_for_the_provision_of_services" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Id_employee" />
+          </Key>
+          <Property Name="Id_employee" Type="Int32" Nullable="false" />
+          <Property Name="Second_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Date_of_birthday" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone_number" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id_post" Type="Int32" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Post" Relationship="Self.FK_Employee_Post" FromRole="Employee" ToRole="Post" />
+          <NavigationProperty Name="Registration_for_the_provision_of_services" Relationship="Self.FK_Registration_for_the_provision_of_services_Employee" FromRole="Employee" ToRole="Registration_for_the_provision_of_services" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="Id_post" />
+          </Key>
+          <Property Name="Id_post" Type="Int32" Nullable="false" />
+          <Property Name="Name_post" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_Post" FromRole="Post" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Purchase_structure">
+          <Key>
+            <PropertyRef Name="Id_spares" />
+            <PropertyRef Name="Id_record" />
+          </Key>
+          <Property Name="Id_spares" Type="Int32" Nullable="false" />
+          <Property Name="Id_record" Type="Int32" Nullable="false" />
+          <Property Name="Amount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Registration_for_the_provision_of_services" Relationship="Self.FK_Purchase_structure_Registration_for_the_provision_of_services" FromRole="Purchase_structure" ToRole="Registration_for_the_provision_of_services" />
+          <NavigationProperty Name="Shares" Relationship="Self.FK_Purchase_structure_Shares" FromRole="Purchase_structure" ToRole="Shares" />
+        </EntityType>
+        <EntityType Name="Registration_for_the_provision_of_services">
+          <Key>
+            <PropertyRef Name="Id_record" />
+          </Key>
+          <Property Name="Id_record" Type="Int32" Nullable="false" />
+          <Property Name="Id_sevice" Type="Int32" Nullable="false" />
+          <Property Name="Id_device" Type="Int32" Nullable="false" />
+          <Property Name="Id_employee" Type="Int32" Nullable="false" />
+          <Property Name="acceptance_date_device" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Work_plan" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Date_start_work" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Date_end_work" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Id_закупки" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Device" Relationship="Self.FK_Registration_for_the_provision_of_services_Device" FromRole="Registration_for_the_provision_of_services" ToRole="Device" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Registration_for_the_provision_of_services_Employee" FromRole="Registration_for_the_provision_of_services" ToRole="Employee" />
+          <NavigationProperty Name="Purchase_structure" Relationship="Self.FK_Purchase_structure_Registration_for_the_provision_of_services" FromRole="Registration_for_the_provision_of_services" ToRole="Purchase_structure" />
+          <NavigationProperty Name="Service" Relationship="Self.FK_Registration_for_the_provision_of_services_Service" FromRole="Registration_for_the_provision_of_services" ToRole="Service" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="Id_service" />
+          </Key>
+          <Property Name="Id_service" Type="Int32" Nullable="false" />
+          <Property Name="Name_service" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cost_service" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Image_service" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Complex_service" Relationship="Self.FK_Complex_service_Service" FromRole="Service" ToRole="Complex_service" />
+          <NavigationProperty Name="Registration_for_the_provision_of_services" Relationship="Self.FK_Registration_for_the_provision_of_services_Service" FromRole="Service" ToRole="Registration_for_the_provision_of_services" />
+        </EntityType>
+        <EntityType Name="Shares">
+          <Key>
+            <PropertyRef Name="Id_shares" />
+          </Key>
+          <Property Name="Id_shares" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Manufacturer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Serial_number" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cost" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Amount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Purchase_structure" Relationship="Self.FK_Purchase_structure_Shares" FromRole="Shares" ToRole="Purchase_structure" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Type_device">
+          <Key>
+            <PropertyRef Name="Id_type_device" />
+          </Key>
+          <Property Name="Id_type_device" Type="Int32" Nullable="false" />
+          <Property Name="Name_type_device" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Complex_service" Relationship="Self.FK_Complex_service_Type_device" FromRole="Type_device" ToRole="Complex_service" />
+          <NavigationProperty Name="Device" Relationship="Self.FK_Device_Type_device" FromRole="Type_device" ToRole="Device" />
+        </EntityType>
+        <Association Name="FK_Device_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Device" Type="Self.Device" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id_client" />
+            </Principal>
+            <Dependent Role="Device">
+              <PropertyRef Name="Id_client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Complex_service_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Complex_service" Type="Self.Complex_service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="Id_service" />
+            </Principal>
+            <Dependent Role="Complex_service">
+              <PropertyRef Name="Id_service" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Complex_service_Type_device">
+          <End Role="Type_device" Type="Self.Type_device" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Complex_service" Type="Self.Complex_service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type_device">
+              <PropertyRef Name="Id_type_device" />
+            </Principal>
+            <Dependent Role="Complex_service">
+              <PropertyRef Name="Id_type_device" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Device_Type_device">
+          <End Role="Type_device" Type="Self.Type_device" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Device" Type="Self.Device" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type_device">
+              <PropertyRef Name="Id_type_device" />
+            </Principal>
+            <Dependent Role="Device">
+              <PropertyRef Name="Id_type_device" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Registration_for_the_provision_of_services_Device">
+          <End Role="Device" Type="Self.Device" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Registration_for_the_provision_of_services" Type="Self.Registration_for_the_provision_of_services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Device">
+              <PropertyRef Name="Id_device" />
+            </Principal>
+            <Dependent Role="Registration_for_the_provision_of_services">
+              <PropertyRef Name="Id_device" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employee_Post">
+          <End Role="Post" Type="Self.Post" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="Id_post" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="Id_post" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Registration_for_the_provision_of_services_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Registration_for_the_provision_of_services" Type="Self.Registration_for_the_provision_of_services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id_employee" />
+            </Principal>
+            <Dependent Role="Registration_for_the_provision_of_services">
+              <PropertyRef Name="Id_employee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Purchase_structure_Registration_for_the_provision_of_services">
+          <End Role="Registration_for_the_provision_of_services" Type="Self.Registration_for_the_provision_of_services" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Purchase_structure" Type="Self.Purchase_structure" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Registration_for_the_provision_of_services">
+              <PropertyRef Name="Id_record" />
+            </Principal>
+            <Dependent Role="Purchase_structure">
+              <PropertyRef Name="Id_record" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Purchase_structure_Shares">
+          <End Role="Shares" Type="Self.Shares" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Purchase_structure" Type="Self.Purchase_structure" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shares">
+              <PropertyRef Name="Id_shares" />
+            </Principal>
+            <Dependent Role="Purchase_structure">
+              <PropertyRef Name="Id_spares" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Registration_for_the_provision_of_services_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Registration_for_the_provision_of_services" Type="Self.Registration_for_the_provision_of_services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="Id_service" />
+            </Principal>
+            <Dependent Role="Registration_for_the_provision_of_services">
+              <PropertyRef Name="Id_sevice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Client" EntityType="Self.Client" />
+          <EntitySet Name="Complex_service" EntityType="Self.Complex_service" />
+          <EntitySet Name="Device" EntityType="Self.Device" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" />
+          <EntitySet Name="Post" EntityType="Self.Post" />
+          <EntitySet Name="Purchase_structure" EntityType="Self.Purchase_structure" />
+          <EntitySet Name="Registration_for_the_provision_of_services" EntityType="Self.Registration_for_the_provision_of_services" />
+          <EntitySet Name="Service" EntityType="Self.Service" />
+          <EntitySet Name="Shares" EntityType="Self.Shares" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Type_device" EntityType="Self.Type_device" />
+          <AssociationSet Name="FK_Device_Client" Association="Self.FK_Device_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Device" EntitySet="Device" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Complex_service_Service" Association="Self.FK_Complex_service_Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="Complex_service" EntitySet="Complex_service" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Complex_service_Type_device" Association="Self.FK_Complex_service_Type_device">
+            <End Role="Type_device" EntitySet="Type_device" />
+            <End Role="Complex_service" EntitySet="Complex_service" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Device_Type_device" Association="Self.FK_Device_Type_device">
+            <End Role="Type_device" EntitySet="Type_device" />
+            <End Role="Device" EntitySet="Device" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Registration_for_the_provision_of_services_Device" Association="Self.FK_Registration_for_the_provision_of_services_Device">
+            <End Role="Device" EntitySet="Device" />
+            <End Role="Registration_for_the_provision_of_services" EntitySet="Registration_for_the_provision_of_services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employee_Post" Association="Self.FK_Employee_Post">
+            <End Role="Post" EntitySet="Post" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Registration_for_the_provision_of_services_Employee" Association="Self.FK_Registration_for_the_provision_of_services_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Registration_for_the_provision_of_services" EntitySet="Registration_for_the_provision_of_services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchase_structure_Registration_for_the_provision_of_services" Association="Self.FK_Purchase_structure_Registration_for_the_provision_of_services">
+            <End Role="Registration_for_the_provision_of_services" EntitySet="Registration_for_the_provision_of_services" />
+            <End Role="Purchase_structure" EntitySet="Purchase_structure" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchase_structure_Shares" Association="Self.FK_Purchase_structure_Shares">
+            <End Role="Shares" EntitySet="Shares" />
+            <End Role="Purchase_structure" EntitySet="Purchase_structure" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Registration_for_the_provision_of_services_Service" Association="Self.FK_Registration_for_the_provision_of_services_Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="Registration_for_the_provision_of_services" EntitySet="Registration_for_the_provision_of_services" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ip125ModelContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="ip125Model.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="Id_client" ColumnName="Id client" />
+                <ScalarProperty Name="Second_name" ColumnName="Second name" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Phone_number" ColumnName="Phone number" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Date_of_birthday" ColumnName="Date of birthday" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Complex_service">
+            <EntityTypeMapping TypeName="ip125Model.Complex_service">
+              <MappingFragment StoreEntitySet="Complex service">
+                <ScalarProperty Name="Id_complex" ColumnName="Id complex" />
+                <ScalarProperty Name="Id_service" ColumnName="Id service" />
+                <ScalarProperty Name="Id_type_device" ColumnName="Id type device" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Device">
+            <EntityTypeMapping TypeName="ip125Model.Device">
+              <MappingFragment StoreEntitySet="Device">
+                <ScalarProperty Name="Id_device" ColumnName="Id device" />
+                <ScalarProperty Name="Id_type_device" ColumnName="Id type device" />
+                <ScalarProperty Name="Name_device" ColumnName="Name device" />
+                <ScalarProperty Name="Serial_number" ColumnName="Serial number" />
+                <ScalarProperty Name="Cause_of_failure" ColumnName="Cause of failure" />
+                <ScalarProperty Name="Id_client" ColumnName="Id client" />
+                <ScalarProperty Name="Crash" ColumnName="Crash" />
+                <ScalarProperty Name="Date_of_crash" ColumnName="Date of crash" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employee">
+            <EntityTypeMapping TypeName="ip125Model.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="Id_employee" ColumnName="Id employee" />
+                <ScalarProperty Name="Second_name" ColumnName="Second name" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Date_of_birthday" ColumnName="Date of birthday" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Phone_number" ColumnName="Phone number" />
+                <ScalarProperty Name="Id_post" ColumnName="Id post" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Post">
+            <EntityTypeMapping TypeName="ip125Model.Post">
+              <MappingFragment StoreEntitySet="Post">
+                <ScalarProperty Name="Id_post" ColumnName="Id post" />
+                <ScalarProperty Name="Name_post" ColumnName="Name post" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Purchase_structure">
+            <EntityTypeMapping TypeName="ip125Model.Purchase_structure">
+              <MappingFragment StoreEntitySet="Purchase structure">
+                <ScalarProperty Name="Id_spares" ColumnName="Id spares" />
+                <ScalarProperty Name="Id_record" ColumnName="Id record" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Registration_for_the_provision_of_services">
+            <EntityTypeMapping TypeName="ip125Model.Registration_for_the_provision_of_services">
+              <MappingFragment StoreEntitySet="Registration for the provision of services">
+                <ScalarProperty Name="Id_record" ColumnName="Id record" />
+                <ScalarProperty Name="Id_sevice" ColumnName="Id sevice" />
+                <ScalarProperty Name="Id_device" ColumnName="Id device" />
+                <ScalarProperty Name="Id_employee" ColumnName="Id employee" />
+                <ScalarProperty Name="acceptance_date_device" ColumnName="acceptance date device" />
+                <ScalarProperty Name="Work_plan" ColumnName="Work plan" />
+                <ScalarProperty Name="Date_start_work" ColumnName="Date start work" />
+                <ScalarProperty Name="Date_end_work" ColumnName="Date end work" />
+                <ScalarProperty Name="Id_закупки" ColumnName="Id закупки" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Service">
+            <EntityTypeMapping TypeName="ip125Model.Service">
+              <MappingFragment StoreEntitySet="Service">
+                <ScalarProperty Name="Id_service" ColumnName="Id service" />
+                <ScalarProperty Name="Name_service" ColumnName="Name service" />
+                <ScalarProperty Name="Cost_service" ColumnName="Cost service" />
+                <ScalarProperty Name="Image_service" ColumnName="Image service" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shares">
+            <EntityTypeMapping TypeName="ip125Model.Shares">
+              <MappingFragment StoreEntitySet="Shares">
+                <ScalarProperty Name="Id_shares" ColumnName="Id shares" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Manufacturer" ColumnName="Manufacturer" />
+                <ScalarProperty Name="Serial_number" ColumnName="Serial number" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ip125Model.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Type_device">
+            <EntityTypeMapping TypeName="ip125Model.Type_device">
+              <MappingFragment StoreEntitySet="Type device">
+                <ScalarProperty Name="Id_type_device" ColumnName="Id type device" />
+                <ScalarProperty Name="Name_type_device" ColumnName="Name type device" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
