@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ServiceCenterIS"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" Style="{StaticResource windowStyle}">
     <Grid>
-        
+        <Button Content="Button" HorizontalAlignment="Left" Margin="320,194,0,0" VerticalAlignment="Top"/>
+        <Image Style="{StaticResource logoImageStyle}"/>
+
     </Grid>
 </Window>
