@@ -34,7 +34,6 @@ namespace ServiceCenterIS
         public virtual DbSet<Registration_for_the_provision_of_services> Registration_for_the_provision_of_services { get; set; }
         public virtual DbSet<Service> Service { get; set; }
         public virtual DbSet<Shares> Shares { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Type_device> Type_device { get; set; }
     }
 }
